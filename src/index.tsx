@@ -5,6 +5,7 @@ import './index.css';
 import App from './App';
 import { QueryContextProvider } from './QueryContext';
 import reportWebVitals from './reportWebVitals';
+import { FetchCountContextProvider } from './FetchCountContext';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -15,9 +16,11 @@ const queryClient = new QueryClient();
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <QueryContextProvider>
-        <App />
-      </QueryContextProvider>
+      <FetchCountContextProvider>
+        <QueryContextProvider>
+          <App />
+        </QueryContextProvider>
+      </FetchCountContextProvider>
     </QueryClientProvider>
   </React.StrictMode>
 );
