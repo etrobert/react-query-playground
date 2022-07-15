@@ -25,7 +25,7 @@ const QueryContextProvider = ({ children }: { children: ReactNode }) => {
 
   // The additional dependency is intentional to invalidate the object
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const query = useMemo(() => ({ name: `data${count}` }), [count, invalidator]);
+  const query = useMemo(() => ({ name: `${count}` }), [count, invalidator]);
   const updateQuery = increaseCount;
 
   return (
