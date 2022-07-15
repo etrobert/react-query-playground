@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import './index.css';
 import App from './App';
+import { QueryStringContextProvider } from './QueryStringContext';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(
@@ -14,7 +15,9 @@ const queryClient = new QueryClient();
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <App />
+      <QueryStringContextProvider>
+        <App />
+      </QueryStringContextProvider>
     </QueryClientProvider>
   </React.StrictMode>
 );

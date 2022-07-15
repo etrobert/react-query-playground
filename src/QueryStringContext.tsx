@@ -1,22 +1,26 @@
-import { createContext, ReactNode, useState } from 'react';
+import { createContext, ReactNode } from 'react';
+import useCount from './useCount';
 
 type QueryStringContextValue = {
   queryString: string;
-  setQueryString: (queryString: string) => void;
+  updateQueryString: () => void;
 };
 
 const initialValue = {
   queryString: 'initialData',
-  setQueryString: () => {},
+  updateQueryString: () => {},
 };
 
 const QueryStringContext = createContext<QueryStringContextValue>(initialValue);
 
 const QueryStringContextProvider = ({ children }: { children: ReactNode }) => {
-  const [queryString, setQueryString] = useState('initialData2');
+  const { count, increaseCount } = useCount();
+
+  const queryString = `data${count}`;
+  const updateQueryString = increaseCount;
 
   return (
-    <QueryStringContext.Provider value={{ queryString, setQueryString }}>
+    <QueryStringContext.Provider value={{ queryString, updateQueryString }}>
       {children}
     </QueryStringContext.Provider>
   );
