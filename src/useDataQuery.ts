@@ -1,20 +1,20 @@
 import { useContext } from 'react';
 import { useQuery } from 'react-query';
-import QueryStringContext from './QueryStringContext';
+import QueryContext from './QueryContext';
 
 const wait = (ms: number) =>
   new Promise<void>((resolve) => setTimeout(resolve, ms));
 
-const fetchData = (queryString: string) =>
+const fetchData = (query: string) =>
   new Promise<string>(async (resolve) => {
     console.log('Fetching Data');
     await wait(1000);
-    resolve(`myData: ${queryString}`);
+    resolve(`myData: ${query}`);
   });
 
 const useDataQuery = () => {
-  const { queryString } = useContext(QueryStringContext);
-  return useQuery(['data', queryString], () => fetchData(queryString));
+  const { query } = useContext(QueryContext);
+  return useQuery(['data', query], () => fetchData(query));
 };
 
 export default useDataQuery;
