@@ -14,7 +14,7 @@ const fetchData = (queryString: string) =>
 
 const useDataQuery = () => {
   const { queryString } = useContext(QueryStringContext);
-  return useQuery('data', () => fetchData(queryString));
+  return useQuery(['data', queryString], () => fetchData(queryString));
 };
 
 export default useDataQuery;
