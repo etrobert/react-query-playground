@@ -4,12 +4,14 @@ import useCount from './useCount';
 import QueryContext from './QueryContext';
 import './App.css';
 import { useContext } from 'react';
+import useDataQuery from './useDataQuery';
 import useInvalidateQuery from './useInvalidateQuery';
 
 function App() {
   const { count, increaseCount } = useCount();
   const { updateQuery, refreshQueryObject } = useContext(QueryContext);
   const invalidateQuery = useInvalidateQuery();
+  const { isFetching, isLoading } = useDataQuery();
   return (
     <div className="App">
       <header className="App-header">
@@ -20,6 +22,7 @@ function App() {
         {range(count).map((i) => (
           <Item key={i} />
         ))}
+        {`isFetching: ${isFetching} isLoading: ${isLoading}`}
       </header>
     </div>
   );
